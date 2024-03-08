@@ -100,7 +100,7 @@ def collect_leaf_centroids(node):
 def distance(a, b):
     return math.sqrt((a[0] - b[0]) ** 2 + (a[1] - b[1]) ** 2)
 
-def k_means(data, array_centroids, max_iterations):
+def k_means(data, num_clusters, array_centroids, max_iterations):
   diff = 1
   j = 0
 
@@ -112,7 +112,7 @@ def k_means(data, array_centroids, max_iterations):
           clusters.append(cluster)
 
       centroids_new = np.zeros(array_centroids.shape)
-      for i in range(K):
+      for i in range(num_clusters):
           points = [data[j] for j in range(len(data)) if clusters[j] == i]
           centroids_new[i] = np.mean(points, axis=0) if points else array_centroids[i]
 
